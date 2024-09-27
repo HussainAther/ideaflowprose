@@ -2,24 +2,21 @@
   "parser": "@babel/eslint-parser",
   "parserOptions": {
     "requireConfigFile": false
-  }
+  },
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended"
   ],
-  "plugins": ["react"],
   "env": {
-    "jest": true,
-    "es6": true,
     "browser": true,
-    "node": true
+    "node": true,
+    "es6": true
   },
+  "plugins": [
+    "react"
+  ],
   "rules": {
-    "no-console": 1
-  },
-  "settings": {
-    "node": {
-      "extensions": [".js", ".jsx"]
-    }
+    "react/prop-types": "off"
   }
 }
+

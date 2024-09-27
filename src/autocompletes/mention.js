@@ -1,70 +1,44 @@
 import React from 'react';
 
-const users = [
-  {
-    firstname: 'Bruce',
-    lastname: 'Wayne'
-  },
-  {
-    firstname: 'Jay',
-    lastname: 'Garrick'
-  },
-  {
-    firstname: 'Allan',
-    lastname: 'Scott'
-  },
-  {
-    firstname: 'Oliver',
-    lastname: 'Queen'
-  },
-  {
-    firstname: 'Princess',
-    lastname: 'Diana'
-  },
-  {
-    firstname: 'Peter',
-    lastname: 'Parker'
-  }
+const hashtags = [
+  'react',
+  'draft-js',
+  'component'
 ];
 
-const onMatch = (text) => users.filter(user => {
-  return user.lastname.indexOf(text) !== -1 || user.firstname.indexOf(text) !== -1
-});
+const onMatch = (text) => hashtags.filter(hashtag => hashtag.indexOf(text) !== -1);
 
-const Mention = ({ children }) => (
-  <span className="Mention">{children}</span>
+const Hashtag = ({ children }) => (
+  <span className="Hashtag">{children}</span>
 );
 
-const List = ({ display, children, ...positions }) => {
-  const styles = {
-    top: positions.bottom,
-    left: positions.left
-  };
+// Removed 'display' from List component as it's not used
+const List = ({ children }) => {
   return (
-    <ul className="MentionList" style={styles}>{children}</ul>
+    <ul className="HashtagList">{children}</ul>
   );
 };
 
 const Item = ({ item, current, onClick }) => {
-  let classNames = "MentionListItem";
-  classNames+= current ? " current" : "";
-  const name = `${item.firstname} ${item.lastname}`;
+  let classNames = "HashtagListItem";
+  classNames += current ? " current" : "";
   return (
     <li className={classNames} onClick={onClick}>
-      {name}
+      {item}
     </li>
   );
 };
 
-const mention = {
-  prefix: '@',
-  type: 'MENTION',
-  mutability: 'SEGMENTED',
+const hashtag = {
+  prefix: '#',
+  type: 'HASHTAG',
+  mutability: 'IMMUTABLE',
   onMatch: onMatch,
-  component: Mention,
+  component: Hashtag, // Corrected component name from 'Hasthtag' to 'Hashtag'
   listComponent: List,
   itemComponent: Item,
-  format: (item) => `@${item.firstname} ${item.lastname}`
+  format: (item) => `#${item}`
 };
 
-export default mention;
+export default hashtag;
+
