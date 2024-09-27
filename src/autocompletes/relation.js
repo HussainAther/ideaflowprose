@@ -1,10 +1,17 @@
 // src/autocompletes/relation.js
 import React from 'react';
 
-const relations = ['Project A', 'Project B', 'Team Collaboration', 'Strategy Meeting'];
+const relations = [
+  'Project A',
+  'Project B',
+  'Team Collaboration',
+  'Strategy Meeting'
+];
 
-const onMatch = (text) => relations.filter(relation => relation.toLowerCase().startsWith(text.toLowerCase()));
+// Match relations based on user input
+const onMatch = (text) => relations.filter(relation => relation.toLowerCase().includes(text.toLowerCase()));
 
+// Component to render relation suggestions
 const Relation = ({ children }) => (
   <span className="Relation">{children}</span>
 );
@@ -23,15 +30,16 @@ const Item = ({ item, current, onClick }) => {
   );
 };
 
+// Configuration object for the relation autocomplete
 const relation = {
   prefix: '<>',
   type: 'RELATION',
-  pattern: /<>\s*(\w*)$/,
+  mutability: 'IMMUTABLE',
   onMatch: onMatch,
   component: Relation,
   listComponent: List,
   itemComponent: Item,
-  format: (item) => `<${item}>`
+  format: (item) => `<${item}>` // How the item should be formatted in the editor
 };
 
 export default relation;

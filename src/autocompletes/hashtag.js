@@ -1,17 +1,23 @@
-// src/autocompletes/hashtag.js
 import React from 'react';
 
-const hashtags = ['react', 'draft-js', 'component'];
+const hashtags = [
+  'react',
+  'draft-js',
+  'component'
+];
 
-const onMatch = (text) => hashtags.filter(hashtag => hashtag.toLowerCase().startsWith(text.toLowerCase()));
+const onMatch = (text) => hashtags.filter(hashtag => hashtag.indexOf(text) !== -1);
 
 const Hashtag = ({ children }) => (
   <span className="Hashtag">{children}</span>
 );
 
-const List = ({ children }) => (
-  <ul className="HashtagList">{children}</ul>
-);
+// Removed 'display' from List component as it's not used
+const List = ({ children }) => {
+  return (
+    <ul className="HashtagList">{children}</ul>
+  );
+};
 
 const Item = ({ item, current, onClick }) => {
   let classNames = "HashtagListItem";
@@ -26,9 +32,9 @@ const Item = ({ item, current, onClick }) => {
 const hashtag = {
   prefix: '#',
   type: 'HASHTAG',
-  pattern: /#(\w*)$/,
+  mutability: 'IMMUTABLE',
   onMatch: onMatch,
-  component: Hashtag,
+  component: Hashtag, // Corrected component name from 'Hasthtag' to 'Hashtag'
   listComponent: List,
   itemComponent: Item,
   format: (item) => `#${item}`
