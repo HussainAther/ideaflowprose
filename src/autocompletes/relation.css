@@ -1,0 +1,23 @@
+/* src/autocompletes/relation.css */
+.Relation {
+  background: lightgreen;
+}
+
+.RelationList {
+  position: absolute;
+  margin: 5px 0 0 0;
+  padding: 0;
+  box-shadow: 0 0 2px black;
+  list-style: none;
+  background: white;
+}
+
+.RelationListItem {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.RelationListItem.current {
+  background: lightgrey;
+}
+
