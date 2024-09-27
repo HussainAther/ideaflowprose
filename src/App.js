@@ -7,9 +7,12 @@ import 'draft-js/dist/Draft.css';
 
 import mention from './autocompletes/mention';
 import hashtag from './autocompletes/hashtag';
+import relation from './autocompletes/relation';
 
 import './autocompletes/mention.css';
 import './autocompletes/hashtag.css';
+import './autocompletes/relation.css';
+
 
 class App extends Component {
 
