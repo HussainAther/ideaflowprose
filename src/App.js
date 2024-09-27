@@ -35,7 +35,7 @@ class App extends Component {
 
     return (
       <React.Fragment>
-        <h1 className="Title">Draft-JS Autocomplete example</h1>
+        <h1 className="Title">Ideaflow app</h1>
         <div className="Editor">
           <Autocomplete editorState={editorState} onChange={this.onChange} autocompletes={this.autocompletes}>
             <Editor />
