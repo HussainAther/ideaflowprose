@@ -7,7 +7,7 @@ import 'draft-js/dist/Draft.css';
 
 import mention from './autocompletes/mention';
 import hashtag from './autocompletes/hashtag';
-import relation from './autocompletes/relation';
+import relation from './autocompletes/relation'; // Ensure relation is imported
 
 import './autocompletes/mention.css';
 import './autocompletes/hashtag.css';
@@ -18,7 +18,8 @@ class App extends Component {
 
   autocompletes = [
     mention,
-    hashtag
+    hashtag,
+    relation // Add relation to the autocompletes array
   ];
 
   constructor(props) {
@@ -50,3 +51,4 @@ class App extends Component {
 }
 
 export default App;
+
