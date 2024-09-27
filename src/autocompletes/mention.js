@@ -1,26 +1,20 @@
+// src/autocompletes/mention.js
 import React from 'react';
 
-const hashtags = [
-  'react',
-  'draft-js',
-  'component'
-];
+const people = ['John Doe', 'Jane Smith', 'Bill Gates', 'Elon Musk'];
 
-const onMatch = (text) => hashtags.filter(hashtag => hashtag.indexOf(text) !== -1);
+const onMatch = (text) => people.filter(person => person.toLowerCase().startsWith(text.toLowerCase()));
 
-const Hashtag = ({ children }) => (
-  <span className="Hashtag">{children}</span>
+const Mention = ({ children }) => (
+  <span className="Mention">{children}</span>
 );
 
-// Removed 'display' from List component as it's not used
-const List = ({ children }) => {
-  return (
-    <ul className="HashtagList">{children}</ul>
-  );
-};
+const List = ({ children }) => (
+  <ul className="MentionList">{children}</ul>
+);
 
 const Item = ({ item, current, onClick }) => {
-  let classNames = "HashtagListItem";
+  let classNames = "MentionListItem";
   classNames += current ? " current" : "";
   return (
     <li className={classNames} onClick={onClick}>
@@ -29,16 +23,16 @@ const Item = ({ item, current, onClick }) => {
   );
 };
 
-const hashtag = {
-  prefix: '#',
-  type: 'HASHTAG',
-  mutability: 'IMMUTABLE',
+const mention = {
+  prefix: '@',
+  type: 'MENTION',
+  pattern: /@(\w*)$/,
   onMatch: onMatch,
-  component: Hashtag, // Corrected component name from 'Hasthtag' to 'Hashtag'
+  component: Mention,
   listComponent: List,
   itemComponent: Item,
-  format: (item) => `#${item}`
+  format: (item) => `@${item}`
 };
 
-export default hashtag;
+export default mention;
 
